@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :customers
+  root 'customers#index'
+
+
+resources :comments, only: [:create, :destroy]
+  
+  get 'customers/index'
+
+  get 'customers/new'
+
+  get 'customers/create'
+
+  get 'customers/edit'
+
+  get 'customers/update'
+
+  get 'customers/show'
+
+  get 'customers/destroy'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

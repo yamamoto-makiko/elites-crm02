@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>顧客情報一覧</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <p>お客様情報が表示されます。</p>
+      </div>
+      <div class="col-md-6">
+        <%= link_to '顧客登録', new_customer_path, class: "btn btn-default pull-right" %>
+      </div>
+    </div>
+    
+        <%= search_form_for @q do |f| %>
+      <div class="row">
+        <div class="col-sm-2 col-xs-12">
+          <div class="form-group">
+            <%= f.label :family_name_cont, '姓' %>
+            <%= f.search_field :family_name_cont, class: "form-control input-sm" %>
+          </div>
+        </div>
+        <div class="col-sm-2 col-xs-12">
+          <div class="form-group">
+            <%= f.label :given_name_cont, '名' %>
+            <%= f.search_field :given_name_cont, class: "form-control input-sm" %>
+          </div>
+        </div>
+        <div class="col-sm-2 col-xs-12">
+          <div class="form-group">
+            <%= f.label :email_cont, '電子メール' %>
+            <%= f.search_field :email_cont, class: "form-control input-sm" %>
+          </div>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+          <div class="form-group">
+            <%= f.label :company_name_cont, '会社名' %>
+            <%= f.search_field :company_name_cont, class: "form-control input-sm" %>
+          </div>
+        </div>
+        <div class="col-sm-3 col-xs-12">
+          <div class="form-group">
+            <%= f.label :post_position_name_cont, '役職名' %>
+            <%= f.search_field :post_position_name_cont, class: "form-control input-sm" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 text-center">
+          <%= f.submit "検索", class: "btn btn-default" %>
+          <%= link_to "リセット", request.path, class:"btn btn-default" %>
+        </div>
+      </div>
+    <% end %>
+
+    <hr />
+    
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped">
+          <thead>
+            <th><%= sort_link(@q, :family_name, "姓") %></th>
+            <th><%= sort_link(@q, :given_name, "名") %></th>
+            <th><%= sort_link(@q, :email, "電子メール") %></th>
+            <th><%= sort_link(@q, :company_name, "所属会社") %></th>
+            <th><%= sort_link(@q, :post_position_name, "役職") %></th>
+            <th>リンク</th>
+          </thead>
+          <tbody>
+            <% @customers.each do |customer| %>
+            <tr>
+              <td><%= customer.family_name %></td>
+              <td><%= customer.given_name %></td>
+              <td><%= customer.email %></td>
+              <td><%= customer.company.name %></td>
+              <td><%= customer.post.position_name %></td>
+              <td><%= link_to '詳細', customer, class: "btn btn-default btn-xs" %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @customers %>
+      </div>
+    </div>
+  </div>
+</div>
