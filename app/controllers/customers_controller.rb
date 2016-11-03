@@ -4,10 +4,8 @@ class CustomersController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  
   # 08-1_基本課題
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  
   
   def index
     # @customers = Customer.all
@@ -70,8 +68,7 @@ class CustomersController < ApplicationController
       :post_id
       )
   end
-  
-  
+
   # 08-1_基本課題
   def set_customer
     @customer = Customer.find(params[:id])
