@@ -23,14 +23,6 @@
     <%= f.label :email %><br>
     <%= f.text_field :email, class: "form-control" %>
   </div>
-
-  <!--09-3_基本課題-->
-  <div class="form-group">
-    <%= f.label :email %><br>
-    <%= f.text_field :email, class: "form-control" %>
-  </div>
-  
-  
   <div class="form-group">
     <%= f.label :company_id %>
     <%= f.collection_select :company_id, Company.all, :id, :name , { include_blank: "会社を選択してください" },  { class: "form-control" } %>
